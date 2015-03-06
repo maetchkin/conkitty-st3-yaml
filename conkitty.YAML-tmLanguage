@@ -1,0 +1,35 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: Conkitty
+scopeName: source.ctpl
+fileTypes: ["ctpl"]
+uuid: 721b73b3-4d2c-479b-8e39-2525fa6e155b
+
+patterns:
+- name: support.function.ctpl
+  match: ^([a-zA-Z0-9\-_]+)
+- name: variable.parameter.ctpl
+  match: (\$[a-zA-Z0-9\-_]+)
+- name: constant.other.ctpl
+  match: \b(CALL|TEST|IF|CHOOSE|EACH|WHEN|OTHERWISE|SET|EXPOSE|AS|PAYLOAD|JS|ACT|TRIGGER|MEM|WITH|ATTR|CTPL-CODE|CTPL-SUITE|CTPL-TEST|CTPL-SHOW)\b
+- name: entity.other.attribute-name.ctpl
+  match: (\@[a-zA-Z0-9\-_]+)
+- name: support.class.ctpl
+  match: (\.[a-z\-_]+)
+- name: string.ctpl
+  match: (\"[^\"]*\")
+- name: string.ctpl
+  match: (\'[^\']*\')
+- name: comment.ctpl
+  match: ^(\/\/.*)$
+- name: entity.name.tag.ctpl
+  match: \b(a|p|label|form|fielset|span|div|li|ul|textarea|button|i|input|select|button|body|head|html|table|td|tr|th|b|img|section|article|header|footer|picture|video|dd|dt|dl|h1|h2|h3|h4|h5|h6)\b
+- name: support.function.ctpl
+  match: (\s[a-z]-[a-zA-Z0-9\-_]+)
+- name: entity.name.class.ctpl
+  match: ([\\(\\)])
+- name: punctuation.definition.tag.ctpl
+  match: (::)
+- name: keyword.control.at-rule.import.css
+  match: (^\s+&.*)
+- name: constant.numeric.ctpl
+  match: ([0-9]*)
