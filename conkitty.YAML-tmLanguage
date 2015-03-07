@@ -39,3 +39,10 @@ repository:
     captures:
       '1': {name: constant.language.ctpl}
       '2': {name: string.quoted.ctpl}
+
+# call-template
+  call-template:
+    match: (?:^\s+(CALL)\s+([a-zA-Z0-9\-_]+))
+    captures:
+      '1': {name: keyword.control.ctpl}
+      '2': {name: support.function.ctpl}
