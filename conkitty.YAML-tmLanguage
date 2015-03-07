@@ -8,6 +8,7 @@ patterns:
 - include: '#comment'
 - include: '#dependency'
 - include: '#call-template'
+- include: '#call-namespaced'
 
 - name: support.function.ctpl
   match: (^[a-zA-Z0-9\-_]+)
@@ -17,7 +18,7 @@ patterns:
   match: \b(CALL|TEST|IF|CHOOSE|EACH|WHEN|OTHERWISE|SET|EXPOSE|AS|PAYLOAD|JS|ACT|TRIGGER|MEM|WITH|ATTR|CTPL-CODE|CTPL-SUITE|CTPL-TEST|CTPL-SHOW)\b
 - name: entity.other.attribute-name.ctpl
   match: (\@[a-zA-Z0-9\-_]+)
-- name: support.class.ctpl
+- name: entity.other.attribute-name.class.id.ctpl
   match: ((\.|#)[a-zA-Z0-9\-_]+)
 - name: string.quoted.double.ctpl
   match: (\"[^\"]*\")
@@ -27,22 +28,25 @@ patterns:
   match: \b(a|p|label|form|fielset|span|div|li|ul|textarea|button|i|input|select|button|body|head|html|table|td|tr|th|b|img|section|article|header|footer|picture|video|dd|dt|dl|h1|h2|h3|h4|h5|h6)\b
 
 repository:
-# control sequences
   comment:
     match: (\/\/.*$)
     captures:
       '1': {name: comment.ctpl}
 
-# dependency sequences
   dependency:
     match: (?:^\s+(&)(.*))
     captures:
       '1': {name: constant.language.ctpl}
       '2': {name: string.quoted.ctpl}
 
-# call-template
   call-template:
-    match: (?:^\s+(CALL)\s+([a-zA-Z0-9\-_]+))
+    match: (?:^\s+(CALL)\s+([a-zA-Z0-9\-_:]+))
     captures:
       '1': {name: keyword.control.ctpl}
       '2': {name: support.function.ctpl}
+
+  call-namespaced:
+    match: (\s+[a-z]+(::)[a-zA-Z0-9\-_]+)
+    captures:
+      '1': {name: support.function.ctpl}
+      '2': {name: keyword.operator.ctpl}
