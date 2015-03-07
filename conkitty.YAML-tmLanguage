@@ -7,11 +7,11 @@ uuid: 721b73b3-4d2c-479b-8e39-2525fa6e155b
 patterns:
 - include: '#comment'
 - include: '#dependency'
+- include: '#define-template'
 - include: '#call-template'
 - include: '#call-namespaced'
 
-- name: support.function.ctpl
-  match: (^[a-zA-Z0-9\-_]+)
+
 - name: variable.parameter.ctpl
   match: (\$[a-zA-Z0-9\-_]+)
 - name: keyword.control.ctpl
@@ -38,6 +38,13 @@ repository:
     captures:
       '1': {name: constant.language.ctpl}
       '2': {name: string.quoted.ctpl}
+
+  define-template:
+    match: (^[a-zA-Z0-9\-_]+(::)?([a-zA-Z0-9\-_]+)?)
+    captures:
+      '1': {name: support.function.ctpl}
+      '2': {name: keyword.operator.ctpl}
+      '3': {name: support.function.ctpl}
 
   call-template:
     match: (?:^\s+(CALL)\s+([a-zA-Z0-9\-_:]+))
